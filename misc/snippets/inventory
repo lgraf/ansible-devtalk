@@ -1,0 +1,9 @@
+mail.example.com
+
+[webservers]
+www[01:50].example.com
+bar.example.com
+
+[dbservers]
+db-[a:f].example.com
+bar.example.com

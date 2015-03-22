@@ -1,0 +1,2 @@
+ping:  ansible -i inventory all -m ping
+facts: ansible -i inventory all -m setup

@@ -1,0 +1,72 @@
+Overview:
+-----------------
+1. What is ansible
+ - Short description
+ - Agentless
+   - No Bootstraping of servers (managment of mangment)
+   - Trusted and already existing security model (SSH)
+   - No Agent (push) means no performance overhead of servers (many machines)
+   - Different connection modes (open ssh/paramiko/local)
+ - Configuration as data not code (yaml)
+
+ - Concepts (Image!)
+   - Inventories
+     - List/Groups of host can be dynamic (default /etc/ansible/hosts)
+     - Groups of groups
+
+   - Playbooks
+     - Contains of plays
+       - Contains of Tasks
+         - Tasks call modules
+   Executed in this order expect of handlers (can be triggerd by tasks)
+
+
+   - Roles
+     - Organization tool
+     - Resuable component
+     - defined by filesystem strcuture
+     - role default,variables, dependencies
+     - ansible galaxy
+
+   - Variables
+     - Playbook
+     - Inventory(group vars, host vars)
+     - CMD
+     - Discoverd variables (facts) (show example,ip tables example)
+
+ - Many modules
+   - (ad-hoc example)
+   - package,service,file,template
+ - All in one configuration managment, orchestration and deployment (multi-tier)
+
+
+How we use it for salesforce right now:
+------------------------
+Server migration -> start to use it
+1. Configuration for a multi-tier application (reverse-proxy, application machine)
+2. Configuration of different environments (dev,staging,(pre)prod)
+
+
+What is good/bad:
+------------------------
+ * Developer setup
+ * Setup of stages
+ * Automation is the base for ci/cd.
+ * No ansible client for windows (vagrant box)
+ * Jump host setup
+
+
+
+
+
+
+
+
+
+
+
+Intersting stuff:
+------------------------------
+ * Rolling updates and orchestration
+ * Deployment
+ * Ansible tower
