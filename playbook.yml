@@ -1,25 +1,42 @@
 ---
+- name: appserver setup
+  hosts: appservers
+
+  tasks:
+    - name: ensure tomcat7 is at latest version
+      apt: name=tomcat7 update_cache=yes state=latest
+      sudo: yes
+
+    - name: ensure tomcat7 is running (and enable it at boot)
+      service: name=tomcat7 state=started enabled=yes
+      sudo: yes
+
 - name: rproxy setup
   hosts: rproxy
 
   tasks:
     - name: ensure apache is at the latest version
-      apt: name=apache2 state=latest
+      apt: name=apache2 update_cache=yes state=latest
       sudo: yes
 
     - name: ensure apache is running (and enable it at boot)
       service: name=apache2 state=started enabled=yes
       sudo: yes
 
-
-- name: appserver setup
-  hosts: appservers
-
-  tasks:
-    - name: ensure tomcat7 is at latest version
-      apt: name=tomcat7 state=latest
+    - name: enable proxy module
+      command: a2enmod proxy proxy_http
       sudo: yes
 
-    - name: ensure tomcat7 is running (and enable it at boot)
-      service: name=tomcat7 state=started enabled=yes
+    - name: create app-proxy vhost configuration
+      template: src=app-proxy.conf.j2 dest=/etc/apache2/sites-available/app-proxy.conf owner=root group=root mode=0640
+      sudo: yes
+
+    - name: enable app-proxy vhost
+      command: a2ensite app-proxy
+      sudo: yes
+      notify: reload apache2
+
+  handlers:
+    - name: reload apache2
+      service: name=apache2 state=reloaded
       sudo: yes

@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+    ServerName localhost
+
+    {% for host in groups['appservers'] %}
+      ProxyPass /{{ host }} http://{{ hostvars[host]['ansible_eth1']['ipv4']['address'] }}:8080
+    {% endfor %}
+</VirtualHost>

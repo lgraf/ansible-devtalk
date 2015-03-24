@@ -1,0 +1,3 @@
+- hosts: rproxy
+  vars:
+    http_port: 80
