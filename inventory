@@ -1,6 +1,6 @@
 [rproxy]
-rproxy ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_ssh_user=vagrant
+rproxy ansible_ssh_host=172.28.128.10 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
 
 [appservers]
-app01 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2223 ansible_ssh_user=vagrant
-app01 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2224 ansible_ssh_user=vagrant
+app01 ansible_ssh_host=172.28.128.11 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
+app02 ansible_ssh_host=172.28.128.12 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
